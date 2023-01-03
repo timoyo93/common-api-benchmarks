@@ -11,8 +11,8 @@
     "dotnet_minimal_api": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "applicationUrl": "https://localhost:7113;http://localhost:5196",
+      "launchBrowser": false,
+      "applicationUrl": "http://localhost:8040",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
