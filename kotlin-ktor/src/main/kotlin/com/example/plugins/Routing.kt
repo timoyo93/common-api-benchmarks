@@ -9,9 +9,6 @@ import kotlinx.serialization.Serializable
 fun Application.configureRouting() {
 
     routing {
-        get("/") {
-            call.respondText("Hello World!")
-        }
         get("/healthcheck") {
             call.respondText("\"Ok\"", ContentType.Application.Json, HttpStatusCode.OK)
         }

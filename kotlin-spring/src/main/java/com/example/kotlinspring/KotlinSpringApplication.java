@@ -26,11 +26,6 @@ public class KotlinSpringApplication {
         return Fibonacci(n - 1) + Fibonacci(n - 2);
     }
 
-    @GetMapping("/")
-    public String sayHello() {
-        return "Hello world!";
-    }
-
     @GetMapping(value = "/healthcheck", produces = "application/json")
     public ResponseEntity<String> healthcheck() {
         return new ResponseEntity<>("\"Ok\"", HttpStatus.OK);
