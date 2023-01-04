@@ -1,3 +1,4 @@
 [default]
 port = 8010
 cli_colors = true
+address = "0.0.0.0"

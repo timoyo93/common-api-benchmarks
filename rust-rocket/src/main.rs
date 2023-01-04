@@ -2,6 +2,7 @@
 
 use rocket::serde::json::Json;
 use rocket::serde::{Serialize, Deserialize};
+use rocket::shield::Shield;
 
 #[derive(Serialize, Deserialize)]
 #[serde(crate = "rocket::serde")]
@@ -44,7 +45,13 @@ fn create_employee() -> Json<u32> {
 #[launch]
 fn rocket() -> _ {
     #[cfg(not(debug_assertions))]
-    println!("Rocket Server has launched...");
+    let figment = rocket::Config::figment();
+    #[cfg(not(debug_assertions))]
+    let port = figment.extract_inner::<u16>("port").unwrap();
+    #[cfg(not(debug_assertions))]
+    let address = figment.extract_inner::<std::net::IpAddr>("address").unwrap();
+    #[cfg(not(debug_assertions))]
+    println!("Rocket Server has launched from http://{}:{}", address, port);
 
-    rocket::build().mount("/", routes![healthcheck, get_employees, create_employee])
+    rocket::build().attach(Shield::new()).mount("/", routes![healthcheck, get_employees, create_employee])
 }
