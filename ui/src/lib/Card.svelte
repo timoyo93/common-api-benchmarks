@@ -62,8 +62,10 @@
         <p class="text-center text-4xl">😢</p>
       </div>
     {/if}
-  {:catch error}
-    <p>{error.message}</p>
+  {:catch}
+    <div class="bg-red-600 health-box unhealthy">
+      <p class="text-center text-4xl">🤕</p>
+    </div>
   {/await}
   <p class="text-sm text-gray-600">Last checked: {time}</p>
 </section>
