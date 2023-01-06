@@ -1,0 +1,45 @@
+version: "3.8"
+services:
+  rust-rocket:
+    container_name: rust-rocket
+    build: ./rust-rocket
+    ports:
+      - 8010:8010
+  go-echo:
+    container_name: go-echo
+    build: ./go-echo
+    ports:
+      - 8020:8020
+  dotnet-web-api:
+    container_name: dotnet-web-api
+    build: ./dotnet-api
+    ports:
+      - 8030:8030
+  dotnet-minimal-api:
+    container_name: dotnet-minimal-api
+    build: ./dotnet-minimal-api
+    ports:
+      - 8040:8040
+  kotlin-ktor:
+    container_name: kotlin-ktor
+    build: ./kotlin-ktor
+    ports:
+      - 8050:8050
+  kotlin-spring:
+    container_name: kotlin-spring
+    build: ./kotlin-spring
+    ports:
+      - 8060:8060
+  svelte-ui:
+    container_name: svelte-ui
+    build:
+      context: ./ui
+      args:
+        RUST_API_URL: "rust-rocket:8010"
+        GO_API_URL: "go-echo:8020"
+        DOTNET_API_URL: "dotnet-web-api:8030"
+        DOTNET_M_API_URL: "dotnet-minimal-api:8040"
+        KTOR_API_URL: "kotlin-ktor:8050"
+        SPRING_API_URL: "kotlin-spring:8060"
+    ports:
+      - 80:80
