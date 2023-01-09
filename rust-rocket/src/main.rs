@@ -1,10 +1,11 @@
-#[macro_use] extern crate rocket;
+#[macro_use]
+extern crate rocket;
 
-use rocket::{Request, Response};
 use rocket::fairing::{Fairing, Info, Kind};
 use rocket::http::Header;
 use rocket::serde::json::Json;
-use rocket::serde::{Serialize, Deserialize};
+use rocket::serde::{Deserialize, Serialize};
+use rocket::{Request, Response};
 
 #[derive(Serialize, Deserialize)]
 #[serde(crate = "rocket::serde")]
@@ -30,9 +31,21 @@ fn healthcheck() -> Json<String> {
 fn get_employees() -> Json<Vec<Employee>> {
     let mut employees = Vec::new();
 
-    employees.push(Employee {id: 1, firstname: String::from("John"), lastname: String::from("Doe")});
-    employees.push(Employee {id: 2, firstname: String::from("Peter"), lastname: String::from("Parker")});
-    employees.push(Employee {id: 3, firstname: String::from("Tony"), lastname: String::from("Stark")});
+    employees.push(Employee {
+        id: 1,
+        firstname: String::from("John"),
+        lastname: String::from("Doe"),
+    });
+    employees.push(Employee {
+        id: 2,
+        firstname: String::from("Peter"),
+        lastname: String::from("Parker"),
+    });
+    employees.push(Employee {
+        id: 3,
+        firstname: String::from("Tony"),
+        lastname: String::from("Stark"),
+    });
 
     Json(employees)
 }
@@ -51,11 +64,18 @@ fn rocket() -> _ {
     #[cfg(not(debug_assertions))]
     let port = figment.extract_inner::<u16>("port").unwrap();
     #[cfg(not(debug_assertions))]
-    let address = figment.extract_inner::<std::net::IpAddr>("address").unwrap();
+    let address = figment
+        .extract_inner::<std::net::IpAddr>("address")
+        .unwrap();
     #[cfg(not(debug_assertions))]
-    println!("Rocket Server has launched from http://{}:{}", address, port);
+    println!(
+        "Rocket Server has launched from http://{}:{}",
+        address, port
+    );
 
-    rocket::build().attach(CORS).mount("/", routes![healthcheck, get_employees, create_employee])
+    rocket::build()
+        .attach(CORS)
+        .mount("/", routes![healthcheck, get_employees, create_employee])
 }
 
 pub struct CORS;
@@ -65,13 +85,16 @@ impl Fairing for CORS {
     fn info(&self) -> Info {
         Info {
             name: "Add CORS headers to responses",
-            kind: Kind::Response
+            kind: Kind::Response,
         }
     }
 
     async fn on_response<'r>(&self, _req: &'r Request<'_>, response: &mut Response<'r>) {
         response.set_header(Header::new("Access-Control-Allow-Origin", "*"));
-        response.set_header(Header::new("Access-Control-Allow-Methods", "POST, GET, OPTIONS"));
+        response.set_header(Header::new(
+            "Access-Control-Allow-Methods",
+            "POST, GET, OPTIONS",
+        ));
         response.set_header(Header::new("Access-Control-Allow-Headers", "*"));
     }
 }
