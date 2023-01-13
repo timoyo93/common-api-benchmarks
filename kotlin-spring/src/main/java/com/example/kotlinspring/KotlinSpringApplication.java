@@ -39,10 +39,9 @@ public class KotlinSpringApplication {
     }
 
     @PostMapping(value = "/employees", produces = "application/json")
-    public ResponseEntity<Integer> createEmployee() {
-        int n = 40;
-        int fib = Fibonacci(n);
-        return new ResponseEntity<>(fib, HttpStatus.OK);
+    public ResponseEntity<Integer> createEmployee() throws InterruptedException {
+        Thread.sleep(300);
+        return new ResponseEntity<>(42, HttpStatus.OK);
     }
 
 }

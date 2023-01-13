@@ -21,19 +21,11 @@ fun Application.configureRouting() {
                 call.respond(HttpStatusCode.OK, employees)
             }
             post {
-                val n = 40
-                val fib = fibonacci(n)
-                call.respond(HttpStatusCode.OK, fib)
+                Thread.sleep(300)
+                call.respond(HttpStatusCode.OK, 42)
             }
         }
     }
-}
-
-fun fibonacci(n: Int): Int {
-    if (n <= 1) {
-        return n
-    }
-    return fibonacci(n - 1) + fibonacci(n - 2)
 }
 
 @Serializable

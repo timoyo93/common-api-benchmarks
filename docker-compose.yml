@@ -5,31 +5,55 @@ services:
     build: ./rust-rocket
     ports:
       - 8010:8010
+    deploy:
+      resources:
+        limits:
+          memory: 1G
   go-echo:
     container_name: go-echo
     build: ./go-echo
     ports:
       - 8020:8020
+    deploy:
+      resources:
+        limits:
+          memory: 1G
   dotnet-web-api:
     container_name: dotnet-web-api
     build: ./dotnet-api
     ports:
       - 8030:8030
+    deploy:
+      resources:
+        limits:
+          memory: 1G
   dotnet-minimal-api:
     container_name: dotnet-minimal-api
     build: ./dotnet-minimal-api
     ports:
       - 8040:8040
+    deploy:
+      resources:
+        limits:
+          memory: 1G
   kotlin-ktor:
     container_name: kotlin-ktor
     build: ./kotlin-ktor
     ports:
       - 8050:8050
+    deploy:
+      resources:
+        limits:
+          memory: 1G
   kotlin-spring:
     container_name: kotlin-spring
     build: ./kotlin-spring
     ports:
       - 8060:8060
+    deploy:
+      resources:
+        limits:
+          memory: 1G
   svelte-ui:
     container_name: svelte-ui
     build:

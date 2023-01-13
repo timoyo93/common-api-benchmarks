@@ -13,22 +13,10 @@ var app = builder.Build();
 
 app.UseCors("AllowAll");
 
-static int Fibonacci(int n)
-{
-    if (n <= 1)
-    {
-        return n;
-    }
-
-    return Fibonacci(n - 1) + Fibonacci(n - 2);
-}
-
 app.MapPost("/employees", () =>
 {
-    var n = 40;
-    var fib = Fibonacci(n);
-
-    return Results.Ok(fib);
+    Thread.Sleep(300);
+    return Results.Ok(42);
 });
 
 app.MapGet("/employees", () =>

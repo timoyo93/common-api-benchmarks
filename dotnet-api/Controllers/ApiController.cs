@@ -6,15 +6,6 @@ namespace dotnet_api.Controllers;
 [Route("/")]
 public class ApiController : ControllerBase
 {
-    private int Fibonacci(int n)
-    {
-        if (n <= 1)
-        {
-            return n;
-        }
-
-        return Fibonacci(n - 1) + Fibonacci(n - 2);
-    }
 
     [HttpGet("healthcheck")]
     [Produces("application/json")]
@@ -40,8 +31,7 @@ public class ApiController : ControllerBase
     [Produces("application/json")]
     public ActionResult<int> CreateEmployee()
     {
-        var n = 40;
-        var fib = Fibonacci(n);
-        return Ok(fib);
+        Thread.Sleep(300);
+        return Ok(42);
     }
 }
