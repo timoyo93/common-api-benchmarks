@@ -29,9 +29,9 @@ public class ApiController : ControllerBase
 
     [HttpPost("employees")]
     [Produces("application/json")]
-    public ActionResult<int> CreateEmployee()
+    public async Task<ActionResult<int>> CreateEmployee()
     {
-        Thread.Sleep(300);
+        await Task.Delay(300);
         return Ok(42);
     }
 }

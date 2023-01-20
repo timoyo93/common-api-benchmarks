@@ -13,9 +13,9 @@ var app = builder.Build();
 
 app.UseCors("AllowAll");
 
-app.MapPost("/employees", () =>
+app.MapPost("/employees", async () =>
 {
-    Thread.Sleep(300);
+    await Task.Delay(300);
     return Results.Ok(42);
 });
 

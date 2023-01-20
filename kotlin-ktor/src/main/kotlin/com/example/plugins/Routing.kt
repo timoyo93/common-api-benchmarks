@@ -4,6 +4,8 @@ import io.ktor.server.routing.*
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.delay
 import kotlinx.serialization.Serializable
 
 fun Application.configureRouting() {
@@ -21,7 +23,7 @@ fun Application.configureRouting() {
                 call.respond(HttpStatusCode.OK, employees)
             }
             post {
-                Thread.sleep(300)
+                delay(300)
                 call.respond(HttpStatusCode.OK, 42)
             }
         }

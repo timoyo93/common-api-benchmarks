@@ -4,8 +4,9 @@ use rocket::fairing::{Fairing, Info, Kind};
 use rocket::http::Header;
 use rocket::serde::json::Json;
 use rocket::serde::{Deserialize, Serialize};
+use rocket::tokio::time::Duration;
+use rocket::tokio::time::sleep;
 use rocket::{Request, Response};
-use std::{thread, time};
 
 #[derive(Serialize, Deserialize)]
 #[serde(crate = "rocket::serde")]
@@ -43,9 +44,8 @@ fn get_employees() -> Json<Vec<Employee>> {
 }
 
 #[post("/employees")]
-fn create_employee() -> Json<u32> {
-    let t = time::Duration::from_millis(300);
-    thread::sleep(t);
+async fn create_employee() -> Json<u32> {
+    sleep(Duration::from_millis(300)).await;
     Json(42)
 }
 
