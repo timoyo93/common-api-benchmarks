@@ -72,6 +72,15 @@ services:
       resources:
         limits:
           memory: 1G
+  php-laravel:
+    container_name: php-laravel
+    build: ./php-laravel
+    ports:
+      - 5010:80
+    deploy:
+      resources:
+        limits:
+          memory: 1G
   svelte-ui:
     container_name: svelte-ui
     build:
@@ -85,5 +94,6 @@ services:
         SPRING_API_URL: "kotlin-spring:8060"
         NODE_NEST_API_URL: "node-nest:3000"
         NODE_PURE_API_URL: "node-pure:5000"
+        PHP_LARAVEL_API_URL: "php-laravel:5010"
     ports:
       - 80:80
