@@ -21,7 +21,7 @@ fn healthcheck() -> Json<String> {
     Json(String::from("Ok"))
 }
 
-#[get("/employees")]
+#[get("/json")]
 fn get_employees() -> Json<Vec<Employee>> {
     let employees = vec![
         Employee {
@@ -43,7 +43,7 @@ fn get_employees() -> Json<Vec<Employee>> {
     Json(employees)
 }
 
-#[post("/employees")]
+#[post("/json")]
 async fn create_employee() -> Json<u32> {
     sleep(Duration::from_millis(300)).await;
     Json(42)
