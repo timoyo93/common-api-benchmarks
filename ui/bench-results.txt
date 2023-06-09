@@ -1,0 +1,28 @@
+  50 goroutine(s) running concurrently
+1320908 requests in 59.810895533s, 348.94MB read
+Requests/sec:           22084.74
+Transfer/sec:           5.83MB
+Avg Req Time:           2.264006ms
+Fastest Request:        82.469µs
+Slowest Request:        175.259513ms
+Number of Errors:       0
+
+
+
+1820715 requests in 59.671184917s, 425.41MB read
+Requests/sec:           30512.47
+Transfer/sec:           7.13MB
+Avg Req Time:           1.638674ms
+Fastest Request:        108.908µs
+Slowest Request:        117.377441ms
+Number of Errors:       0
+
+
+
+1418001 requests in 59.707867344s, 631.53MB read
+Requests/sec:           23748.98
+Transfer/sec:           10.58MB
+Avg Req Time:           2.105353ms
+Fastest Request:        95.241µs
+Slowest Request:        161.859217ms
+Number of Errors:       0

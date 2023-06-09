@@ -13,13 +13,13 @@ var app = builder.Build();
 
 app.UseCors("AllowAll");
 
-app.MapPost("/employees", async () =>
+app.MapPost("/json", async () =>
 {
     await Task.Delay(300);
     return Results.Ok(42);
 });
 
-app.MapGet("/employees", () =>
+app.MapGet("/json", () =>
 {
     var employees = new List<Employee>()
     {

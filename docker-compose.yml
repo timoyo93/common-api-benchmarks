@@ -54,6 +54,24 @@ services:
       resources:
         limits:
           memory: 1G
+  node-nest:
+    container_name: node-nest
+    build: ./node-nestjs
+    ports:
+      - 3000:3000
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+  node-pure:
+    container_name: node-pure
+    build: ./node-pure
+    ports:
+      - 5000:5000
+    deploy:
+      resources:
+        limits:
+          memory: 1G
   svelte-ui:
     container_name: svelte-ui
     build:
@@ -65,5 +83,7 @@ services:
         DOTNET_M_API_URL: "dotnet-minimal-api:8040"
         KTOR_API_URL: "kotlin-ktor:8050"
         SPRING_API_URL: "kotlin-spring:8060"
+        NODE_NEST_API_URL: "node-nest:3000"
+        NODE_PURE_API_URL: "node-pure:5000"
     ports:
       - 80:80
