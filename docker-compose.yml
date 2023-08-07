@@ -97,3 +97,12 @@ services:
         PHP_LARAVEL_API_URL: "php-laravel:5010"
     ports:
       - 80:80
+  python-flask-api:
+    container_name: python-flask-api
+    build: ./python-flask-api
+    ports:
+      - 8070:5000
+    deploy:
+      resources:
+        limits:
+          memory: 1G
